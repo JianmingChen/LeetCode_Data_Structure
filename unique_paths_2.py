@@ -50,25 +50,19 @@ class Solution:
         4. Final answer is in dp[-1][-1]
         """
         m, n = len(obstacleGrid), len(obstacleGrid[0])
-        # Initialize dp array with zeros
+
         dp = [[0] * n for _ in range(m)]
         
-        # Initialize starting point
-        # If there's an obstacle at start, no paths are possible
+
         dp[0][0] = 1 if obstacleGrid[0][0] == 0 else 0
 
-        # Fill dp array
         for i in range(m):
             for j in range(n):
-                # If current cell is obstacle, leave it as 0
                 if obstacleGrid[i][j] == 1:
                     continue
-                    
-                # Add paths from cell above (if exists)
                 if i > 0:
                     dp[i][j] += dp[i-1][j]
                     
-                # Add paths from cell to left (if exists)
                 if j > 0:
                     dp[i][j] += dp[i][j-1]
                     
